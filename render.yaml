@@ -36,6 +36,8 @@ services:
         sync: false
       - key: CLOUDINARY_API_SECRET
         sync: false
+      - key: CLOUDINARY_FOLDER
+        value: premium-ecommerce
       - key: SMTP_HOST
         sync: false
       - key: SMTP_PORT
@@ -45,4 +47,8 @@ services:
       - key: SMTP_PASSWORD
         sync: false
       - key: EMAIL_FROM
+        sync: false
+      # Proxy hops in front of the API: blank/1 = Render only, 2 = Vercel /api rewrite → Render.
+      # Set in the dashboard once verified (docs/deployment.md, "Client IP behind the proxy").
+      - key: TRUST_PROXY
         sync: false

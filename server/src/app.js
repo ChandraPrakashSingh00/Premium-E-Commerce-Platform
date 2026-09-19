@@ -18,7 +18,7 @@ import { robotsTxt, sitemapXml } from './controllers/seo.controller.js';
 export function createApp() {
   const app = express();
 
-  app.set('trust proxy', 1);
+  app.set('trust proxy', env.TRUST_PROXY);
   app.disable('x-powered-by');
 
   app.use(requestId);

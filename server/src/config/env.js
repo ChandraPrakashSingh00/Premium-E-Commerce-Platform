@@ -48,6 +48,12 @@ const schema = z.object({
 
   REDIS_URL: optional,
   LOG_LEVEL: z.enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'silent']).default(isTest ? 'silent' : 'info'),
+  // Express "trust proxy" hop count: 1 = Render only, 2 = Vercel rewrite → Render.
+  // Integers only (never `true`, which lets clients spoof their IP); empty keeps the default.
+  TRUST_PROXY: z.preprocess(
+    (v) => (typeof v === 'string' && !v.trim() ? undefined : v),
+    z.coerce.number().int().min(0).max(3).default(1),
+  ),
 });
 
 const parsed = schema.safeParse({
