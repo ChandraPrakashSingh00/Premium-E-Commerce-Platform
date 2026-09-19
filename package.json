@@ -1,0 +1,27 @@
+{
+  "name": "premium-ecommerce",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Production-ready full-stack e-commerce platform (React + Node.js + MongoDB)",
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "engines": {
+    "node": ">=20.19"
+  },
+  "scripts": {
+    "dev": "concurrently -n server,client -c blue,magenta \"npm run dev -w server\" \"npm run dev -w client\"",
+    "dev:db": "node scripts/dev-db.js",
+    "build": "npm run build -w client",
+    "start": "npm run start -w server",
+    "lint": "npm run lint -w server && npm run lint -w client",
+    "test": "npm run test -w server && npm run test -w client",
+    "seed": "npm run seed -w server",
+    "sitemap": "node scripts/generate-sitemap.js"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5"
+  }
+}
