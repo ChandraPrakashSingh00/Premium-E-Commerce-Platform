@@ -16,6 +16,8 @@ services:
         value: "22"
       - key: MONGO_URI
         sync: false
+      - key: MONGO_DB_NAME
+        value: bluemart
       - key: CLIENT_URL
         sync: false
       - key: SERVER_URL
@@ -48,7 +50,7 @@ services:
         sync: false
       - key: EMAIL_FROM
         sync: false
-      # Proxy hops in front of the API: blank/1 = Render only, 2 = Vercel /api rewrite → Render.
-      # Set in the dashboard once verified (docs/deployment.md, "Client IP behind the proxy").
+      # Proxy hops in front of the API (default 1). Verified: 1 resolves real client IPs
+      # through the Vercel /api proxy too – leave blank (docs/deployment.md).
       - key: TRUST_PROXY
         sync: false

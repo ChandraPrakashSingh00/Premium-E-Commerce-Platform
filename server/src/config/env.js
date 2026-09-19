@@ -21,6 +21,8 @@ const schema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
   PORT: z.coerce.number().int().positive().default(5000),
   MONGO_URI: z.string().min(1, 'MONGO_URI is required'),
+  // Overrides the database named in MONGO_URI (which defaults to `test` when the URI has none).
+  MONGO_DB_NAME: optional,
   // Local defaults only outside production; deployments must set real URLs.
   CLIENT_URL: isProd ? z.string().min(1, 'CLIENT_URL is required') : z.string().min(1).default('http://localhost:5173'),
   SERVER_URL: isProd ? z.string().url('SERVER_URL must be a URL') : z.string().url().default('http://localhost:5000'),

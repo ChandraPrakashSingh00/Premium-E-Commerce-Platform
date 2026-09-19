@@ -15,6 +15,7 @@ export async function connectDatabase(uri = env.MONGO_URI) {
     maxPoolSize: env.isProd ? 50 : 10,
     serverSelectionTimeoutMS: 10_000,
     autoIndex: !env.isProd,
+    ...(env.MONGO_DB_NAME && { dbName: env.MONGO_DB_NAME }),
   });
 
   const hello = await mongoose.connection.db.admin().command({ hello: 1 });
